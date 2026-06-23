@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 from app import db
 from app.models import User
 import bcrypt
@@ -7,6 +7,19 @@ from datetime import timedelta
 import re
 
 auth = Blueprint('auth', __name__)
+
+# Frontend page routes
+@auth.route('/login-page')
+def login_page():
+    return render_template('login.html')
+
+@auth.route('/register-page')
+def register_page():
+    return render_template('register.html')
+
+@auth.route('/profile-page')
+def profile_page():
+    return render_template('profile.html')
 
 # Input validation helper
 def is_valid_email(email):
